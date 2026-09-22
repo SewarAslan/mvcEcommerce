@@ -11,8 +11,12 @@ namespace Ecommerce.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Data Source=.;Database=Ecommerce_15;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Application Name=\"SQL Server Management Studio\";Command Timeout=0");
 
+            var connectionString =
+                Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection")
+                ?? "Data Source=.;Database=Ecommerce_15;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Command Timeout=0";
+
+            optionsBuilder.UseSqlServer(connectionString);
         }
     }
 }
