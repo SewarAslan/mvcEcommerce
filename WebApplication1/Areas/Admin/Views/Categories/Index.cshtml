@@ -1,0 +1,172 @@
+﻿@using Ecommerce.ViewModels;
+@model List<CategoryViewModel>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<div class="card categories-card">
+
+    <div class="categories-header">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+            <div class="d-flex align-items-center gap-3">
+
+                <div class="admin-heading-icon">
+                    <i class="bi bi-tags"></i>
+                </div>
+
+                <div>
+                    <h3 class="categories-title">
+                        Categories
+                    </h3>
+
+                    <p class="categories-subtitle">
+                        Manage your product categories
+                    </p>
+                </div>
+
+            </div>
+
+            <a asp-area="Admin"
+               asp-controller="Categories"
+               asp-action="Create"
+               class="btn btn-add-category">
+
+                <i class="bi bi-plus-lg me-1"></i>
+                Add Category
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5">
+
+            <div class="empty-icon mb-3">
+                <i class="bi bi-tags"></i>
+            </div>
+
+            <h5 class="fw-semibold">
+                No Categories Found
+            </h5>
+
+            <p class="text-muted">
+                Add your first category to get started.
+            </p>
+
+            <a asp-controller="Categories"
+               asp-action="Create"
+               class="btn btn-add-category">
+
+                <i class="bi bi-plus-lg me-1"></i>
+                Add Category
+
+            </a>
+
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+
+            <table class="table categories-table align-middle">
+
+                <thead>
+                    <tr>
+                        <th style="width: 90px;">ID</th>
+                        <th>Category Name</th>
+                        <th>Status</th>
+                        <th class="text-end" style="width: 140px;">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                <span class="admin-id">
+                                    #@item.Id
+                                </span>
+                            </td>
+
+                            <td>
+
+                                <div class="admin-name-wrapper">
+
+                                    <div class="admin-small-icon">
+                                        <i class="bi bi-tag"></i>
+                                    </div>
+
+                                    <span class="admin-name">
+                                        @item.Name
+                                    </span>
+
+                                </div>
+
+                            </td>
+
+                            <td>
+
+                                @if (item.Status == Ecommerce.Eunums.Status.Active)
+                                {
+                                    <span class="status status-active">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Active
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="status status-inactive">
+                                        <i class="bi bi-x-circle-fill"></i>
+                                        Inactive
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td class="text-end">
+
+                                <a asp-controller="Categories"
+                                   asp-action="Edit"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-outline-primary action-button me-1"
+                                   title="Edit">
+
+                                    <i class="bi bi-pencil"></i>
+
+                                </a>
+
+                                <a asp-controller="Categories"
+                                   asp-action="Delete"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-outline-danger action-button"
+                                   title="Delete">
+
+                                    <i class="bi bi-trash"></i>
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+    }
+
+</div>

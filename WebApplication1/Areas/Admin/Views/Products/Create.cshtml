@@ -1,0 +1,222 @@
+﻿@using Ecommerce.ViewModels
+@model CreateProductViewModel
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-8 col-xl-7">
+
+        <div class="card form-card">
+
+            <!-- Header -->
+            <div class="form-card-header">
+
+                <div class="d-flex align-items-center gap-3">
+
+                    <div class="form-icon">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+
+                    <div>
+                        <h3 class="form-title">
+                            Add New Product
+                        </h3>
+
+                        <p class="form-subtitle">
+                            Add a new product to your store
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <form asp-controller="Products"
+                  asp-action="Store"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                <div class="card-body p-4">
+
+                    <!-- Product Name -->
+                    <div class="mb-4">
+
+                        <label asp-for="Name"
+                               class="form-label custom-label">
+                            Product Name
+                        </label>
+
+                        <input asp-for="Name"
+                               class="form-control custom-input"
+                               placeholder="Enter product name" />
+
+                        <span asp-validation-for="Name"
+                              class="text-danger small mt-1 d-block">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Description -->
+                    <div class="mb-4">
+
+                        <label asp-for="Description"
+                               class="form-label custom-label">
+                            Product Description
+                        </label>
+
+                        <textarea asp-for="Description"
+                                  class="form-control custom-input"
+                                  rows="4"
+                                  placeholder="Enter product description">
+                        </textarea>
+
+                        <span asp-validation-for="Description"
+                              class="text-danger small mt-1 d-block">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Price & Quantity -->
+                    <div class="row">
+
+                        <div class="col-md-6 mb-4">
+
+                            <label asp-for="Price"
+                                   class="form-label custom-label">
+                                Product Price
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+                                    $
+                                </span>
+
+                                <input asp-for="Price"
+                                       class="form-control custom-input"
+                                       placeholder="0.00" />
+
+                            </div>
+
+                            <span asp-validation-for="Price"
+                                  class="text-danger small mt-1 d-block">
+                            </span>
+
+                        </div>
+
+
+                        <div class="col-md-6 mb-4">
+
+                            <label asp-for="Quantity"
+                                   class="form-label custom-label">
+                                Quantity
+                            </label>
+
+                            <input asp-for="Quantity"
+                                   class="form-control custom-input"
+                                   placeholder="Enter quantity" />
+
+                            <span asp-validation-for="Quantity"
+                                  class="text-danger small mt-1 d-block">
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Category -->
+                    <div class="mb-4">
+
+                        <label class="form-label custom-label">
+                            Category
+                        </label>
+
+                        <select asp-for="CategoryId"
+                                class="form-select custom-select">
+
+                            <option value="">
+                                Select a category
+                            </option>
+
+                            @foreach (var category in ViewBag.Categories)
+                            {
+                                <option value="@category.Id">
+                                    @category.Name
+                                </option>
+                            }
+
+                        </select>
+
+                        <span asp-validation-for="CategoryId"
+                              class="text-danger small mt-1 d-block">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Product Image -->
+                    <div class="mb-2">
+
+                        <label asp-for="MainImage"
+                               class="form-label custom-label">
+                            Product Image
+                        </label>
+
+                        <input asp-for="MainImage"
+                               class="form-control custom-input"
+                               type="file"
+                               accept="image/*" />
+
+                        <span asp-validation-for="MainImage"
+                              class="text-danger small mt-1 d-block">
+                        </span>
+
+                        <small class="text-muted d-block mt-2">
+                            Upload the main image for this product.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Footer -->
+                <div class="form-footer d-flex justify-content-end gap-2">
+
+                    <a asp-controller="Products"
+                       asp-action="Index"
+                       class="btn btn-cancel">
+
+                        <i class="bi bi-arrow-left me-1"></i>
+                        Cancel
+
+                    </a>
+
+                    <button type="submit"
+                            class="btn btn-create">
+
+                        <i class="bi bi-plus-lg me-1"></i>
+                        Create Product
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

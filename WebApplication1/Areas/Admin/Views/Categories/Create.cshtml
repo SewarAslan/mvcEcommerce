@@ -1,0 +1,98 @@
+﻿@using Ecommerce.ViewModels
+@model CreateCategoryViewModel
+
+@{
+    ViewData["Title"] = "Create Category";
+}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-7 col-xl-6">
+
+        <div class="card form-card">
+
+            <div class="form-card-header">
+
+                <div class="d-flex align-items-center gap-3">
+
+                    <div class="form-icon">
+                        <i class="bi bi-plus-square"></i>
+                    </div>
+
+                    <div>
+
+                        <h3 class="form-title">
+                            Add New Category
+                        </h3>
+
+                        <p class="form-subtitle">
+                            Create a new category for your products
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <form asp-controller="Categories"
+                  asp-action="Store"
+                  method="post">
+
+                <div class="card-body p-4">
+
+                    <div class="mb-3">
+
+                        <label asp-for="Name"
+                               class="form-label custom-label">
+
+                            Category Name
+
+                        </label>
+
+                        <input asp-for="Name"
+                               class="form-control custom-input"
+                               placeholder="Enter category name" />
+
+                        <span asp-validation-for="Name"
+                              class="text-danger small mt-1 d-block">
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-footer d-flex justify-content-end gap-2">
+
+                    <a asp-controller="Categories"
+                       asp-action="Index"
+                       class="btn btn-cancel">
+
+                        <i class="bi bi-arrow-left me-1"></i>
+                        Cancel
+
+                    </a>
+
+                    <button type="submit"
+                            class="btn btn-create">
+
+                        <i class="bi bi-plus-lg me-1"></i>
+                        Create Category
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

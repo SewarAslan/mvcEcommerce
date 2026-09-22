@@ -1,4 +1,4 @@
-namespace WebApplication1
+namespace Ecommerce
 {
     public class Program
     {
@@ -27,7 +27,7 @@ namespace WebApplication1
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{area=Admin}/{controller=Home}/{action=Index}/{id?}")
+                pattern: "{area=User}/{controller=Home}/{action=Index}/{id?}")
                 .WithStaticAssets();
 
             app.Run();

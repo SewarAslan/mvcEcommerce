@@ -1,0 +1,135 @@
+﻿@using Ecommerce.ViewModels
+@model EditCategoryViewModel
+
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-7 col-xl-6">
+
+        <div class="card form-card">
+
+            <div class="form-card-header">
+
+                <div class="d-flex align-items-center gap-3">
+
+                    <div class="form-icon">
+                        <i class="bi bi-pencil-square"></i>
+                    </div>
+
+                    <div>
+
+                        <h3 class="form-title">
+                            Edit Category
+                        </h3>
+
+                        <p class="form-subtitle">
+                            Update category information and status
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <form asp-controller="Categories"
+                  asp-action="Update"
+                  method="post">
+
+                <input type="hidden"
+                       asp-for="Id" />
+
+
+                <div class="card-body p-4">
+
+                    <div class="mb-4">
+
+                        <label asp-for="Name"
+                               class="form-label custom-label">
+
+                            Category Name
+
+                        </label>
+
+                        <input asp-for="Name"
+                               class="form-control custom-input"
+                               placeholder="Enter category name" />
+
+                        <span asp-validation-for="Name"
+                              class="text-danger small mt-1 d-block">
+                        </span>
+
+                    </div>
+
+
+                    <div class="mb-2">
+
+                        <label asp-for="Status"
+                               class="form-label custom-label">
+
+                            Status
+
+                        </label>
+
+                        <select asp-for="Status"
+                                class="form-select custom-select">
+
+                            <option value="Active">
+                                Active
+                            </option>
+
+                            <option value="InActive">
+                                Inactive
+                            </option>
+
+                        </select>
+
+                        <span asp-validation-for="Status"
+                              class="text-danger small mt-1 d-block">
+                        </span>
+
+                        <small class="text-muted d-block mt-2">
+                            Choose whether this category is active or inactive.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-footer d-flex justify-content-end gap-2">
+
+                    <a asp-controller="Categories"
+                       asp-action="Index"
+                       class="btn btn-cancel">
+
+                        <i class="bi bi-arrow-left me-1"></i>
+                        Cancel
+
+                    </a>
+
+                    <button type="submit"
+                            class="btn btn-save">
+
+                        <i class="bi bi-check-lg me-1"></i>
+                        Save Changes
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

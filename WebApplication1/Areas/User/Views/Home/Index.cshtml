@@ -1,8 +1,115 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<Category>
+
+@{
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<section class="store-page-header">
+
+    <div class="container px-4 px-lg-5">
+
+        <span class="page-badge">
+            <i class="bi bi-bag"></i>
+            Ecommerce Store
+        </span>
+
+        <h1>Browse Categories</h1>
+
+        <p>
+            Find products by choosing a category below.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="store-section">
+
+    <div class="container px-4 px-lg-5">
+
+
+        <div class="section-header">
+
+            <h2 class="section-title">
+                Categories
+            </h2>
+
+            <p class="section-description">
+                Explore our available product collections.
+            </p>
+
+        </div>
+
+
+        @if (!Model.Any())
+        {
+            <div class="empty-state text-center">
+
+                <div class="category-icon mx-auto mb-3">
+                    <i class="bi bi-tags"></i>
+                </div>
+
+                <h5>No categories available</h5>
+
+                <p class="text-muted mb-0">
+                    There are currently no active categories.
+                </p>
+
+            </div>
+        }
+        else
+        {
+            <div class="row g-4">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6">
+
+                        <div class="category-card">
+
+                            <div class="category-card-top">
+
+                                <div class="category-icon">
+                                    <i class="bi bi-tag"></i>
+                                </div>
+
+                                <div>
+
+                                    <h5 class="category-name">
+                                        @item.Name
+                                    </h5>
+
+                                    <p class="category-description">
+                                        Browse products in this category
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <a asp-area="User"
+                               asp-controller="Products"
+                               asp-action="Index"
+                               asp-route-categoryId="@item.Id"
+                               class="btn btn-store w-100">
+
+                                View Products
+
+                                <i class="bi bi-arrow-right ms-1"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+        }
+
+    </div>
+
+</section>
