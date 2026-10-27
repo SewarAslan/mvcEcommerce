@@ -8,7 +8,15 @@ The project contains two main areas:
 - **Admin Area** – manage categories and products.
 
 ---
+## Live Demo
 
+[View Live Website](https://ecommerce-mvc.runasp.net)
+
+### Admin Dashboard
+
+[Open Admin Panel](https://ecommerce-mvc.runasp.net/Admin/Home/Index)
+
+---
 ## Features
 
 ### User Area
